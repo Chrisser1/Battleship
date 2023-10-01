@@ -8,7 +8,7 @@
       "type": "java",
       "name": "Client",
       "request": "launch",
-      "mainClass": "main.battleship.gui.Client"
+      "mainClass": "src.main.battleship.gui.Client"
     },
     {
       "type": "java",

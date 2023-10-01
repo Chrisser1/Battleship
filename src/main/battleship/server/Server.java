@@ -7,11 +7,14 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+@Deprecated
 public class Server {
     private ServerSocket serverSocket;
 
     public static void main(String[] args) {
         System.out.println("W.I.P");
+        // Server server = new Server();
+        // server.start(6666);
     }
 
     public void start(int port) {

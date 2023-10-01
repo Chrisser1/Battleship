@@ -6,15 +6,16 @@ import processing.core.PApplet;
 import processing.event.MouseEvent;
 
 public class Draw extends PApplet{
-  ArtList content = new ArtList();
-  int width,height;
-  static Draw art;
+  private ArtList content = new ArtList();
+  private int width,height;
+  private static Draw art;
+  
   public Draw(int screenWidth, int screenHeight){
     width = screenWidth;
     height = screenHeight;
   }
 
-  public static void main(String[] args) {
+  public static void run() {
     art = new Draw(1000, 1000);
     PApplet.runSketch(new String[] {"Draw"},art);
   }

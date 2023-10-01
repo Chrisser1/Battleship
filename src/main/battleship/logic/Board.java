@@ -26,6 +26,7 @@ public class Board {
   public void placeShip(Ship ship, int x, int y, boolean isVertical) {
     int length = ship.getType().getHoles();
     
+
     for (int i = 0; i < length; i++) {
       if (isVertical) {
         cells[x][y + i].occupy(ship);
@@ -33,6 +34,8 @@ public class Board {
         cells[x + i][y].occupy(ship);
       }
     }
+
+
   }
 
   public void receiveAttack(int x, int y) {
