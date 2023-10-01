@@ -23,10 +23,23 @@ public class Board {
     return cells[x][y].isOccupied();
   }
 
-  public void placeShip(Ship ship, int x, int y, boolean isVertical) {
+  public boolean placeShip(Ship ship, int x, int y, boolean isVertical) {
     int length = ship.getType().getHoles();
     
-
+    // Check if ship fits within the board
+    if(isVertical) {
+      if(y + length > SIZE) return false;
+      for (int i = 0; i < length; i++) {
+        if(cells[x][y + i].isOccupied()) return false;
+      }
+    } else {
+      if(x + length > SIZE) return false;
+      for (int i = 0; i < length; i++) {
+        if(cells[x + i][y].isOccupied()) return false;
+      }
+    }
+    
+    // Place the ship
     for (int i = 0; i < length; i++) {
       if (isVertical) {
         cells[x][y + i].occupy(ship);
@@ -34,8 +47,8 @@ public class Board {
         cells[x + i][y].occupy(ship);
       }
     }
-
-
+    
+    return true;
   }
 
   public void receiveAttack(int x, int y) {

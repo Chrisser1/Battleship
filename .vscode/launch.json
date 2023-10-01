@@ -6,9 +6,16 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Draw",
+      "request": "launch",
+      "mainClass": "main.battleship.gui.Controller.Draw",
+      "projectName": "Battleship_60680df1"
+    },
+    {
+      "type": "java",
       "name": "Client",
       "request": "launch",
-      "mainClass": "src.main.battleship.gui.Client"
+      "mainClass": "main.battleship.gui.Client"
     },
     {
       "type": "java",

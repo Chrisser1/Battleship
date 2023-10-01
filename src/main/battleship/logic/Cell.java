@@ -20,7 +20,8 @@ public class Cell {
   public void receiveAttack() {
     this.attacked = true;
     if (ship != null) {
-      // ship.hit();
+      ship.hit();
+      ship.checkState();
     }
   }
   

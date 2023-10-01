@@ -21,10 +21,22 @@ public class Ship {
 
   private final ShipType type;
   private boolean isVertical;
+  private int hitCount = 0;
+  private boolean sunc = false;
 
   public Ship(ShipType type) {
     this.type = type;
     this.isVertical = false;
+  }
+
+  public void hit() {
+    this.hitCount++;
+  }
+
+  public void checkState() {
+    if (this.hitCount == this.type.holes) {
+      this.sunc = true;
+    }
   }
 
   public ShipType getType() {
