@@ -8,13 +8,13 @@
       "type": "java",
       "name": "Client",
       "request": "launch",
-      "mainClass": "main.battleship.gui.Client"
+      "mainClass": "main.battleship.client.Client"
     },
     {
       "type": "java",
       "name": "Server",
       "request": "launch",
-      "mainClass": "main.battleship.server.Server"
+      "mainClass": "main.battleship.server.ServerThread"
     }
   ]
 }
