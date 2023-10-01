@@ -26,7 +26,7 @@ public class Server {
             break;
          }
         out.println(inputLine);
-    }
+        }
     }
 
     public void stop() {
