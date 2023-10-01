@@ -1,4 +1,4 @@
-package main.battleship.gui.App;
+package main.battleship.client.App;
 
 import java.util.ArrayList;
 import java.util.function.Function;

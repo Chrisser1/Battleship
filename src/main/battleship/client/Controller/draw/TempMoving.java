@@ -1,6 +1,6 @@
-package main.battleship.gui.Controller.draw;
+package main.battleship.client.Controller.draw;
 
-import main.battleship.gui.Controller.Draw;
+import main.battleship.client.Controller.Draw;
 import processing.core.PGraphics;
 
 /**

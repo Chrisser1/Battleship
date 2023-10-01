@@ -1,9 +1,9 @@
-package main.battleship.gui.Controller;
+package main.battleship.client.Controller;
 
 import java.util.ArrayList;
 
-import main.battleship.gui.Controller.draw.Art;
-import main.battleship.gui.Controller.draw.ArtList;
+import main.battleship.client.Controller.draw.Art;
+import main.battleship.client.Controller.draw.ArtList;
 import processing.core.PApplet;
 import processing.event.MouseEvent;
 

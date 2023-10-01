@@ -1,8 +1,8 @@
-package main.battleship.gui.App;
+package main.battleship.client.App;
 
-import main.battleship.gui.Controller.Draw;
-import main.battleship.gui.Controller.draw.ArtList;
-import main.battleship.gui.Controller.draw.Rect;
+import main.battleship.client.Controller.Draw;
+import main.battleship.client.Controller.draw.ArtList;
+import main.battleship.client.Controller.draw.Rect;
 
 public class Program extends Thread{
   public void start(){

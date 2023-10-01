@@ -1,4 +1,4 @@
-package main.battleship.gui.Controller.draw;
+package main.battleship.client.Controller.draw;
 
 import java.util.LinkedList;
 

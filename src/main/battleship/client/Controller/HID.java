@@ -1,4 +1,4 @@
-package main.battleship.gui.Controller;
+package main.battleship.client.Controller;
 
 import processing.core.PApplet;
 

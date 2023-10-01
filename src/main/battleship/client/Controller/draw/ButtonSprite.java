@@ -1,8 +1,8 @@
-package main.battleship.gui.Controller.draw;
+package main.battleship.client.Controller.draw;
 
 import java.util.function.Function;
 
-import main.battleship.gui.App.Button;
+import main.battleship.client.App.Button;
 import processing.core.PImage;
 
 public abstract class ButtonSprite extends Sprite{

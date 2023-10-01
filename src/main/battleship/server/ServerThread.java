@@ -21,9 +21,7 @@ public class ServerThread extends Thread{
     public void run() {
         try {
             //Reading the input from Client
-            OutputStream outputStream = socket.getOutputStream();
-            Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-            BufferedWriter input = new BufferedWriter(writer);
+            BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
             
             //returning the output to the client : true statement is to flush the buffer otherwise
             //we have to do it manually
@@ -32,11 +30,23 @@ public class ServerThread extends Thread{
 
             //infite loop for the server
             while(true) {
-                // String outputString = input.readLine();
+                 String outputString = input.readLine();
+                 //if user types exit command
+                if(outputString.equals("exit")) {
+                    break;
+                }
+                printToAllClients(outputString);
+                //output.println("Server says " + outputString);
+                System.out.println("Server received " + outputString);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    private void printToAllClients(String outputString) {
+        for (ServerThread sT : threadList) {
+            sT.output.println(outputString);
         }
     }
 
