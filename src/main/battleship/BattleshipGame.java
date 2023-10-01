@@ -9,7 +9,6 @@ public class BattleshipGame {
             Server server = new Server();
             server.start(6666);
     }).start();
-
     // Pause to ensure server starts before client tries to connect
     try {
       Thread.sleep(1000);
@@ -17,17 +16,19 @@ public class BattleshipGame {
       Thread.currentThread().interrupt();
       e.printStackTrace();
     }
+    BattleshipGame game = new BattleshipGame();
+    game.givenClient_whenServerEchosMessage_thenCorrect();
+
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       e.printStackTrace();
     }
-
-    BattleshipGame game = new BattleshipGame();
+    game = new BattleshipGame();
     game.givenClient_whenServerEchosMessage_thenCorrect();
   }
-  
+
   public void givenClient_whenServerEchosMessage_thenCorrect() {
     Client client = new Client();
     client.startConnection("127.0.0.1", 6666);
@@ -35,7 +36,7 @@ public class BattleshipGame {
     String resp2 = client.sendMessage("world");
     String resp3 = client.sendMessage("!");
     String resp4 = client.sendMessage("good bye");
-    
+
     assertEquals("hello", resp1);
     assertEquals("world", resp2);
     assertEquals("!", resp3);
@@ -44,24 +45,24 @@ public class BattleshipGame {
   }
 
   public void givenClient1_whenServerResponds_thenCorrect() {
-      EchoClient client1 = new Client();
+      Client client1 = new Client();
       client1.startConnection("127.0.0.1", 5555);
       String msg1 = client1.sendMessage("hello");
       String msg2 = client1.sendMessage("world");
       String terminate = client1.sendMessage(".");
-      
+
       assertEquals(msg1, "hello");
       assertEquals(msg2, "world");
       assertEquals(terminate, "bye");
   }
 
   public void givenClient2_whenServerResponds_thenCorrect() {
-      EchoClient client2 = new Client();
+      Client client2 = new Client();
       client2.startConnection("127.0.0.1", 5555);
       String msg1 = client2.sendMessage("hello");
       String msg2 = client2.sendMessage("world");
       String terminate = client2.sendMessage(".");
-      
+
       assertEquals(msg1, "hello");
       assertEquals(msg2, "world");
       assertEquals(terminate, "bye");
