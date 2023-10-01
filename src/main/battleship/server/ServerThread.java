@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+
+// https://gyawaliamit.medium.com/multi-client-chat-server-using-sockets-and-threads-in-java-2d0b64cad4a7
 public class ServerThread extends Thread{
     private Socket socket;
     private ArrayList<ServerThread> threadList;
@@ -30,7 +32,7 @@ public class ServerThread extends Thread{
 
             //infite loop for the server
             while(true) {
-                String outputString = input.
+                // String outputString = input.readLine();
             }
 
         } catch (Exception e) {
