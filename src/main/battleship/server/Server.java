@@ -9,42 +9,78 @@ import java.net.Socket;
 
 public class Server {
     private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
 
     public void start(int port) {
-        serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-        if (".".equals(inputLine)) {
-            out.println("good bye");
-            break;
-         }
-        out.println(inputLine);
+        try {
+            serverSocket = new ServerSocket(port);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+        while (true)
+            try {
+                new EchoClientHandler(serverSocket.accept()).start();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
     }
 
     public void stop() {
         try {
-            if (in != null) {
-                in.close();
-            }
-            if (out != null) {
-                out.close();
-            }
-            if (clientSocket != null) {
-                clientSocket.close();
-            }
-            if (serverSocket != null) {
-                serverSocket.close();
-            }
+            serverSocket.close();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    private static class EchoClientHandler extends Thread {
+        private Socket clientSocket;
+        private PrintWriter out;
+        private BufferedReader in;
+
+        public EchoClientHandler(Socket socket) {
+            this.clientSocket = socket;
+        }
+
+        public void run() {
+            try {
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            try {
+                in = new BufferedReader(
+                new InputStreamReader(clientSocket.getInputStream()));
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            String inputLine;
+            try {
+                while ((inputLine = in.readLine()) != null) {
+                    if (".".equals(inputLine)) {
+                        out.println("bye");
+                        break;
+                    }
+                    out.println(inputLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            try {
+                in.close();
+                out.close();
+                clientSocket.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }
