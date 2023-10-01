@@ -18,15 +18,6 @@ public class BattleshipGame {
     }
     BattleshipGame game = new BattleshipGame();
     game.givenClient_whenServerEchosMessage_thenCorrect();
-
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      e.printStackTrace();
-    }
-    game = new BattleshipGame();
-    game.givenClient_whenServerEchosMessage_thenCorrect();
   }
 
   public void givenClient_whenServerEchosMessage_thenCorrect() {
@@ -43,31 +34,7 @@ public class BattleshipGame {
     assertEquals("good bye", resp4);
     String terminate = client.sendMessage(".");
   }
-
-  public void givenClient1_whenServerResponds_thenCorrect() {
-      Client client1 = new Client();
-      client1.startConnection("127.0.0.1", 5555);
-      String msg1 = client1.sendMessage("hello");
-      String msg2 = client1.sendMessage("world");
-      String terminate = client1.sendMessage(".");
-
-      assertEquals(msg1, "hello");
-      assertEquals(msg2, "world");
-      assertEquals(terminate, "bye");
-  }
-
-  public void givenClient2_whenServerResponds_thenCorrect() {
-      Client client2 = new Client();
-      client2.startConnection("127.0.0.1", 5555);
-      String msg1 = client2.sendMessage("hello");
-      String msg2 = client2.sendMessage("world");
-      String terminate = client2.sendMessage(".");
-
-      assertEquals(msg1, "hello");
-      assertEquals(msg2, "world");
-      assertEquals(terminate, "bye");
-  }
-
+  
   public void assertEquals(String one, String two) {
     System.out.println("is "+ one + " equal to " + two + ": " + one.equals(two));
   }

@@ -10,6 +10,10 @@ import java.net.Socket;
 public class Server {
     private ServerSocket serverSocket;
 
+    public static void main(String[] args) {
+        System.out.println("W.I.P");
+    }
+
     public void start(int port) {
         try {
             serverSocket = new ServerSocket(port);
