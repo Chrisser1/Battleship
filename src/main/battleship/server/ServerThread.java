@@ -28,10 +28,10 @@ public class ServerThread extends Thread{
             output = new PrintWriter(socket.getOutputStream(),true);
 
 
-            //infite loop for the server
+            //infinite loop for the server
             while(true) {
-                 String outputString = input.readLine();
-                 //if user types exit command
+                String outputString = input.readLine();
+                //if user types exit command
                 if(outputString.equals("exit")) {
                     break;
                 }
