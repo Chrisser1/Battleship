@@ -5,14 +5,31 @@ public class Board {
   public static final int SIZE = 10;
   
   private Cell[][] cells;
+  private int x, y, size;
 
-  public Board() {
+  public Board(int x, int y, int size) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+
     cells = new Cell[SIZE][SIZE];
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
         cells[i][j] = new Cell();
       }
     }
+  }
+
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
+  }
+
+  public int getSize() {
+    return this.size;
   }
 
   public Cell[][] getCells() {

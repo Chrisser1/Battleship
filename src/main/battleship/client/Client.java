@@ -22,7 +22,8 @@ public class Client {
 
     try (Socket socket = new Socket("localhost",6666)){
       //reading the input from server
-      // BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
+      BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
+      Draw.getDraw().getProgram().SetPlayerCount(input.read());
       //returing the output to the server : true statement is to flush the buffer otherwise
       //we have to do it manuallyy
       // PrintWriter output = new PrintWriter(socket.getOutputStream(),true);

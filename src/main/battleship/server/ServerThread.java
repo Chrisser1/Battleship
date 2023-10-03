@@ -35,7 +35,7 @@ public class ServerThread extends Thread{
                 if(outputString.equals("exit")) {
                     break;
                 }
-                // printToAllClients(outputString);
+                sendToAllClients();
                 //output.println("Server says " + outputString);
                 System.out.println("Server received " + outputString);
             }
@@ -44,9 +44,9 @@ public class ServerThread extends Thread{
             e.printStackTrace();
         }
     }
-    private void printToAllClients(String outputString) {
+    private void sendToAllClients() {
         for (ServerThread sT : threadList) {
-            sT.output.println(outputString);
+            sT.output.println(threadList.size());
         }
     }
 
