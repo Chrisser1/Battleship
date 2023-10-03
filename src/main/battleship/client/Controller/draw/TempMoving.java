@@ -13,7 +13,7 @@ public class TempMoving implements Art{
   Art icon;
   Art onRemove;
   /**
-   * 
+   *
    * @param startX
    * @param startY
    * @param finalX
@@ -38,15 +38,16 @@ public class TempMoving implements Art{
       Draw.getDraw().removeItem(this);
       Draw.getDraw().addItem(onRemove);
     }
-    setPossition(
+    setPosition(
       x + ((endx - x) / framesRemaning),
       y + ((endy - y) / framesRemaning)
     );
     framesRemaning--;
   }
-  public void setPossition(int x, int y){
+  @Override
+  public void setPosition(int x, int y){
     this.x = x;
     this.y = y;
-    icon.setPossition(x, y);
+    icon.setPosition(x, y);
   }
 }

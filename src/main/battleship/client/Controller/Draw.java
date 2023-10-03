@@ -2,9 +2,11 @@ package main.battleship.client.Controller;
 
 import java.util.ArrayList;
 
+import main.battleship.client.App.Program;
 import main.battleship.client.Controller.draw.Art;
 import main.battleship.client.Controller.draw.ArtList;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.event.MouseEvent;
 
 public class Draw extends PApplet{
@@ -13,13 +15,19 @@ public class Draw extends PApplet{
   private static Draw art;
   private ArrayList<ArtList> scenes = new ArrayList<ArtList>();
   private int currentScene =  0;
-  public Draw(int screenWidth, int screenHeight){
+  private Program prog = new Program();
+  private Draw(int screenWidth, int screenHeight){
     width = screenWidth;
     height = screenHeight;
   }
-  public static void main(String[] args){
-    System.out.println("hello");
+
+  public PImage getImage(String path){
+    return loadImage(path);
   }
+  public static void main(String[] args){
+    System.out.println("Hello");
+  }
+
   public int addScene(ArtList scene){
     scenes.add(scene);
     return scenes.size()-2;
@@ -32,15 +40,25 @@ public class Draw extends PApplet{
     PApplet.runSketch(new String[] {"Draw"},art);
     System.out.println("startet window");
   }
-  
+
   public static Draw getDraw() {
+    while (art == null){
+      System.out.println("draw not available yet\nWait");
+      try{
+        Thread.sleep(100);
+      }catch(InterruptedException ignore){
+        break;
+      }
+    }
     return art;
   }
   @Override
   public void settings(){
     size(width, height);
   }
+  @Override
   public void setup(){
+    prog.start();
   }
   @Override
   public void draw(){
@@ -64,7 +82,10 @@ public class Draw extends PApplet{
   public void removeItem(int ID){
     content.remove(ID);
   }
-  @Override 
+  public Program getProgram(){
+    return prog;
+  }
+  @Override
   public void mousePressed(MouseEvent mouse){
     if(mouse.getButton() == LEFT){
       HID.setLeftClick(true);

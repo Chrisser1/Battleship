@@ -26,7 +26,8 @@ public class Sprite implements Art{
   public void draw(PGraphics g) {
     g.image(icon, x, y);
   }
-  public void setPossition(int x,int y){
+  @Override
+  public void setPosition(int x,int y){
     this.x = x;
     this.y = y;
   }

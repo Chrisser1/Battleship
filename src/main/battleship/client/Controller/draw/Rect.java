@@ -22,7 +22,8 @@ public class Rect implements Art{
     g.stroke(this.r, this.g, this.b);
     g.rect(this.x, this.y, this.w, this.h);
   }
-  public void setPossition(int x,int y){
+  @Override
+  public void setPosition(int x,int y){
     this.x = x;
     this.y = y;
   }

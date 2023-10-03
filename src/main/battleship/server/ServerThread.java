@@ -22,7 +22,7 @@ public class ServerThread extends Thread{
         try {
             //Reading the input from Client
             BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
-            
+
             //returning the output to the client : true statement is to flush the buffer otherwise
             //we have to do it manually
             output = new PrintWriter(socket.getOutputStream(),true);
@@ -35,7 +35,7 @@ public class ServerThread extends Thread{
                 if(outputString.equals("exit")) {
                     break;
                 }
-                printToAllClients(outputString);
+                // printToAllClients(outputString);
                 //output.println("Server says " + outputString);
                 System.out.println("Server received " + outputString);
             }
@@ -53,7 +53,7 @@ public class ServerThread extends Thread{
     public static void main(String[] args) {
         //using serversocket as argument to automatically close the socket
         //the port number is unique for each server
-        
+
         //list to add all the clients thread
         ArrayList<ServerThread> threadList = new ArrayList<>();
         try(ServerSocket serverSocket = new ServerSocket(6666)) {
