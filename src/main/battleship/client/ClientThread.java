@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import main.battleship.client.App.Program;
+import main.battleship.client.Controller.Draw;
 
 public class ClientThread extends Thread{
     private Socket socket;
@@ -38,6 +39,7 @@ public class ClientThread extends Thread{
             while (true) {
                 // Server input
                 String response = input.readLine();
+                Draw.getDraw().getProgram().SetPlayerCount(Integer.parseInt(response));
                 program.serverUpdates(response);
                 System.out.println(response);
             }
