@@ -32,6 +32,21 @@ public class Draw extends PApplet{
     scenes.add(scene);
     return scenes.size()-2;
   }
+
+  public ArrayList<ArtList> getScenes(){
+    return scenes;
+  }
+
+  public void setScenes(ArrayList<ArtList> scenes){
+    this.scenes = scenes;
+  }
+
+  public void removeFromAllScenes(Art item){
+    for (ArtList currentScene : scenes) {
+      currentScene.remove(item);
+    }
+  }
+  
   public void setScene(int  ID){
     currentScene = ID;
   }

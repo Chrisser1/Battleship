@@ -46,7 +46,7 @@ public class ServerThread extends Thread{
     }
     private void sendToAllClients() {
         for (ServerThread sT : threadList) {
-            sT.output.println(threadList.size());
+            sT.output.println("Size: " + threadList.size());
         }
     }
 

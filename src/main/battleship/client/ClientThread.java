@@ -38,10 +38,10 @@ public class ClientThread extends Thread{
         try {
             while (true) {
                 // Server input
+
                 String response = input.readLine();
-                Draw.getDraw().getProgram().SetPlayerCount(Integer.parseInt(response));
-                program.serverUpdates(response);
-                System.out.println(response);
+                serverResponseReader(response);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,6 +51,29 @@ public class ClientThread extends Thread{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void serverResponseReader(String response){
+        if (response.contains("Size: ")){
+            response = removeColonAndSpace(response);
+            Draw.getDraw().getProgram().SetPlayerCount(Integer.parseInt(response));
+        }
+    }
+
+    private String removeColonAndSpace(String input){        
+        // Find the index of ": "
+        int indexOfColonSpace = input.indexOf(": ");
+        
+        // Check if ": " was found
+        if (indexOfColonSpace != -1) {
+            // Use substring to get the text after the first occurrence of ": "
+            String result = input.substring(indexOfColonSpace + 2); // +2 to skip ": "
+            return result;
+        } else {
+            // ": " not found in the string
+            System.out.println("': ' not found in the input string");
+            return input;
         }
     }
 }

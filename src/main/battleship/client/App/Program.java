@@ -16,14 +16,14 @@ public class Program extends Thread{
   ArtList scene = new ArtList();
   ArrayList<String> awaiting = new ArrayList<>();
   int playerCount;
-  TextBox numberOfPlayersDisplayBox = new TextBox("Number of players: " + 1,870, 30, new Color(132, 132, 130), true, 10, 20, 5);
+  TextBox numberOfPlayersDisplayBox = new TextBox("Number of players: " + 0,870, 30, new Color(132, 132, 130), true, 10, 20, 5);
 
   @Override
   public void start(){
     addNewBoard(new Board(50, 250, 400));
     addNewBoard(new Board(550, 250, 400));
     scene.add(new TextBox("Battleship",500, 70, new Color(132, 132, 130), true, 10, 100, 10));
-    showPlayCount();
+    scene.add(numberOfPlayersDisplayBox);
     Draw.getDraw().addScene(scene);
     super.start();
   }
@@ -45,14 +45,12 @@ public class Program extends Thread{
   }
 
   private void showPlayCount(){
-    
-    if(numberOfPlayersDisplayBox.getText() != "Number of players: " + playerCount){
-      scene.remove(numberOfPlayersDisplayBox);
+    String currentNumberOfPlayers = "Number of players: " + playerCount;
+    if(!numberOfPlayersDisplayBox.getText().contains(currentNumberOfPlayers)){
+      Draw.getDraw().removeFromAllScenes(numberOfPlayersDisplayBox);
       numberOfPlayersDisplayBox = new TextBox("Number of players: " + playerCount,870, 30, new Color(132, 132, 130), true, 10, 20, 5);
       scene.add(numberOfPlayersDisplayBox);
       Draw.getDraw().addScene(scene);
-    } else {
-      scene.add(numberOfPlayersDisplayBox);
     }
   }
 
@@ -78,9 +76,7 @@ public class Program extends Thread{
       this.parent.sendMessage(awaiting.get(i));
     }
   }
-  public void serverUpdates(String message) {
 
-  }
   public void sendMessage(String message){
     if(parent == null) {
       awaiting.add(message);
