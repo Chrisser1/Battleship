@@ -1,11 +1,13 @@
 package main.battleship.client.App;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import main.battleship.client.ClientThread;
 import main.battleship.client.Controller.Color;
 import main.battleship.client.Controller.Draw;
 import main.battleship.client.Controller.draw.ArtList;
+import main.battleship.client.Controller.draw.ButtonSprite;
 import main.battleship.client.Controller.draw.Rect;
 import main.battleship.client.Controller.draw.TextBox;
 import main.battleship.logic.Board;
@@ -17,13 +19,13 @@ public class Program extends Thread{
   ArrayList<String> awaiting = new ArrayList<>();
   int playerCount;
   TextBox numberOfPlayersDisplayBox = new TextBox("Number of players: " + 0,870, 30, new Color(132, 132, 130), true, 10, 20, 5);
+  boolean hasStartButton = false;
 
   @Override
   public void start(){
     addNewBoard(new Board(50, 250, 400));
     addNewBoard(new Board(550, 250, 400));
     scene.add(new TextBox("Battleship",500, 70, new Color(132, 132, 130), true, 10, 100, 10));
-    scene.add(numberOfPlayersDisplayBox);
     Draw.getDraw().addScene(scene);
     super.start();
   }
@@ -47,10 +49,11 @@ public class Program extends Thread{
   private void showPlayCount(){
     String currentNumberOfPlayers = "Number of players: " + playerCount;
     if(!numberOfPlayersDisplayBox.getText().contains(currentNumberOfPlayers)){
-      Draw.getDraw().removeFromAllScenes(numberOfPlayersDisplayBox);
+      Draw.getDraw().removeItem(numberOfPlayersDisplayBox);
       numberOfPlayersDisplayBox = new TextBox("Number of players: " + playerCount,870, 30, new Color(132, 132, 130), true, 10, 20, 5);
-      scene.add(numberOfPlayersDisplayBox);
-      Draw.getDraw().addScene(scene);
+      // scene.add(numberOfPlayersDisplayBox);
+      // Draw.getDraw().addScene(scene);
+      Draw.getDraw().addItem(numberOfPlayersDisplayBox);
     }
   }
 
@@ -58,11 +61,31 @@ public class Program extends Thread{
     this.playerCount = playerCount;
   }
 
+  private void checkIfGameIsReadyToStart() {
+    if (this.playerCount > 1 && this.hasStartButton == false) {
+      AddStartButton();
+    }
+  }
+
+  private void AddStartButton() {
+    ButtonSprite startButton = new ButtonSprite(730, 60, Draw.getDraw().getImage("src\\main\\battleship\\client\\App\\img\\StartButton.png")) {
+      @Override
+      public void onClick(int ID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClick'");
+      }
+    };
+
+    Draw.getDraw().addItem(startButton);
+    this.hasStartButton = true;
+  }
+
   @Override
   public void run(){
     int h = 0;
     while(true){
       showPlayCount();
+      checkIfGameIsReadyToStart();
       sendMessage("hello " + h);
       h++;
       try {

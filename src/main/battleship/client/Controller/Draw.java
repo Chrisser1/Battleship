@@ -41,10 +41,16 @@ public class Draw extends PApplet{
     this.scenes = scenes;
   }
 
-  public void removeFromAllScenes(Art item){
+  public int removeFromAllScenes(Art item){
+    int removeTimes = 0;
     for (ArtList currentScene : scenes) {
+      int size = currentScene.size();
       currentScene.remove(item);
+      if (size != currentScene.size()) {
+        removeTimes++;
+      }
     }
+    return removeTimes;
   }
   
   public void setScene(int  ID){
@@ -77,9 +83,14 @@ public class Draw extends PApplet{
   }
   @Override
   public void draw(){
+    background(255); // Set the background color (white in this case) to clear the screen
+    
+    // Draw the objects in the current scene
     for (int i = 0; i < scenes.get(currentScene).size(); i++) {
       scenes.get(currentScene).get(i).draw(g);
     }
+
+    // Draw the objects in the content list
     for (int i = 0; i < content.size(); i++) {
       content.get(i).draw(g);
     }
