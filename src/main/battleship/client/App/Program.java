@@ -68,7 +68,7 @@ public class Program extends Thread{
   }
 
   private void AddStartButton() {
-    ButtonSprite startButton = new ButtonSprite(730, 60, Draw.getDraw().getImage("src\\main\\battleship\\client\\App\\img\\StartButton.png")) {
+    ButtonSprite startButton = new ButtonSprite(870-100, 60, Draw.getDraw().getImage("src\\main\\battleship\\client\\App\\img\\StartButton.png"), 200, 50) {
       @Override
       public void onClick(int ID) {
         // TODO Auto-generated method stub

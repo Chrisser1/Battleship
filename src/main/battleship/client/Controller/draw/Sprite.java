@@ -5,12 +5,19 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 
 public class Sprite implements Art{
-  int x,y;
+  int x,y,width,height;
   PImage icon;
   public Sprite(int x, int y, PImage icon){
     this.x = x;
     this.y = y;
     this.icon = icon;
+  }
+  public Sprite(int x, int y, PImage icon, int width, int height){
+    this.x = x;
+    this.y = y;
+    this.icon = icon;
+    this.width = width;
+    this.height = height;
   }
   public Sprite(int x, int y, String path){
     this.x = x;
@@ -24,7 +31,11 @@ public class Sprite implements Art{
   }
   @Override
   public void draw(PGraphics g) {
-    g.image(icon, x, y);
+    if (width == 0 && height == 0) {
+      g.image(icon, x, y);
+    } else {
+      g.image(icon, x, y, width, height);
+    }
   }
   @Override
   public void setPosition(int x,int y){
